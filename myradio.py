@@ -57,6 +57,9 @@ def myradio_api_request(
     if res["status"] == 401:
         raise MixclouderException("Missing API Key", "API Key Not Provided")
 
+    if retry:
+        myradio_api_request(url, payload, False, method)
+
     raise MixclouderException("Unexpected MyRadio Response", f"{res}")
 
 
